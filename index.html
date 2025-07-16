@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conca D'oro Pizzeria, a family-owned restaurant serving authentic Italian pizza, hoagies, and more in Plum Borough, Pittsburgh, PA since 1976. Visit us at 926 Presque Isle Dr.">
+    <title>Conca D'oro Pizzeria | Plum, Pittsburgh PA | Authentic Italian Pizza</title>
+    
+    <!-- Google Fonts: Playfair Display & Lato -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* CSS - Enhanced Modern Rustic Italian Theme */
+
+        /* 1. Variables & Global Resets */
+        :root {
+            --primary-red: #A42A28;
+            --creamy-white: #F5F5DC;
+            --earthy-brown: #5D4037;
+            --gold-accent: #FFD700;
+            --dark-text: #333333;
+            --light-text: #f8f8f8;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--creamy-white);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        section {
+            padding: 100px 5%;
+            overflow: hidden; /* Prevents scrollbars from appearing during animations */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 2. Header & Navigation */
+        .header {
+            background-color: transparent;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: background-color 0.4s ease, padding 0.4s ease;
+            padding: 1.5rem 5%;
+        }
+        
+        .header.scrolled {
+            background-color: rgba(20, 20, 20, 0.95);
+            padding: 0.75rem 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--light-text);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 2rem;
+        }
+
+        .nav-link {
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold-accent);
+        }
+        
+        .nav-cta {
+            background-color: var(--gold-accent);
+            color: var(--dark-text);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .nav-cta:hover {
+            background-color: #ffc400;
+            color: var(--dark-text);
+            transform: scale(1.05);
+        }
+        
+        .nav-cta::after {
+            display: none; /* No underline for the button */
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            background-color: var(--light-text);
+        }
+
+        /* 3. Hero Section */
+        #home {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080/5D4037/FFFFFF?text=Delicious+Conca+D\'oro+Pizza') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--light-text);
+            padding-top: 0;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            color: var(--light-text);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-cta {
+            background-color: var(--gold-accent);
+            color: var(--dark-text);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .hero-cta:hover {
+            background-color: #ffc400;
+            transform: scale(1.05);
+        }
+        
+        /* 4. General Section Styling & Scroll Animations */
+        #about, #gallery, #contact {
+            background-color: #fff;
+        }
+        #menu {
+            background-color: var(--creamy-white);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 5. About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* 6. Menu Section */
+        .menu-special-banner {
+            background-color: var(--primary-red);
+            color: var(--light-text);
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+        }
+        .menu-special-banner h3 {
+            color: var(--gold-accent);
+            font-size: 2rem;
+            margin: 0;
+        }
+        .menu-special-banner p {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        .menu-category {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .menu-category h3 {
+            border-bottom: 2px solid var(--gold-accent);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .menu-item-name {
+            font-weight: 700;
+            flex-basis: 70%;
+        }
+        .menu-item-price {
+            font-weight: 700;
+            flex-basis: 25%;
+            text-align: right;
+        }
+        .menu-item-description {
+            font-size: 0.9rem;
+            color: #666;
+            flex-basis: 100%;
+            margin-top: 0.25rem;
+        }
+        #menu-loading {
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 3rem;
+        }
+
+
+        /* 7. Gallery Section & Lightbox */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            box-shadow: 0 0 25px rgba(0,0,0,0.5);
+            border-radius: 5px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* 8. Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+        }
+        .contact-info p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        .contact-info i {
+            color: var(--primary-red);
+            margin-right: 10px;
+            width: 20px;
+            margin-top: 4px;
+        }
+        .contact-info a {
+            color: var(--dark-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .contact-info a:hover {
+            color: var(--primary-red);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            border: 0;
+            border-radius: 10px;
+        }
+
+        /* 9. Footer */
+        .footer {
+            background-color: var(--dark-text);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem 5%;
+        }
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--gold-accent);
+        }
+        .footer p {
+            margin-top: 1rem;
+        }
+        
+        /* 10. Responsive Design */
+        @media (max-width: 992px) {
+            h2 { font-size: 2.2rem; }
+            .about-content, .contact-content { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                flex-direction: column;
+                justify-content: center;
+                background-color: rgba(20, 20, 20, 0.98);
+                width: 100%;
+                height: 100vh;
+                text-align: center;
+                transition: 0.3s;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 2rem 0;
+            }
+            .nav-link { font-size: 1.5rem; }
+
+            .hamburger {
+                display: block;
+                z-index: 1001; /* Ensure it's above the nav menu */
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-content p { font-size: 1.2rem; }
+            section { padding: 60px 5%; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="#home" class="nav-logo">Conca D'oro</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="#" class="nav-link nav-cta">Order Online</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home">
+            <div class="hero-content">
+                <h1>Authentic Italian Pizza</h1>
+                <p>Family-owned and serving the best of Plum Borough since 1976.</p>
+                <a href="#menu" class="hero-cta">View Our Menu</a>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about">
+            <div class="container">
+                <h2 class="fade-in">Our Family Story</h2>
+                <div class="about-content">
+                    <div class="about-text fade-in">
+                        <h3>A Tradition of Taste in Plum Borough</h3>
+                        <p>Since 1976, Conca D'oro Pizzeria has been a cornerstone of the Pittsburgh community. What started as a small family dream in Plum, PA has blossomed into a local favorite, built on the foundations of authentic recipes, fresh ingredients, and a passion for bringing people together over a great meal.</p>
+                        <p>We're proud to be a family-owned and operated establishment right here in the Pittsburgh area. Every pizza we craft, every hoagie we build, is a piece of our heritage. From our famous Pan Pizza to our Gourmet Hand-Tossed creations, we pour our hearts into our food. Thank you for being a part of our story.</p>
+                    </div>
+                    <div class="about-image fade-in">
+                        <img src="https://placehold.co/600x400/A42A28/FFFFFF?text=Our+Pizzeria" alt="Inside of Conca D'oro Pizzeria">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu">
+            <div class="container">
+                <h2 class="fade-in">Our Menu</h2>
+
+                <div class="menu-special-banner fade-in">
+                    <h3>SPECIAL: $33.95</h3>
+                    <p>2 LARGE HAND-TOSSED PIZZAS (ONE TOPPING ON EACH)</p>
+                </div>
+
+                <div id="menu-grid" class="menu-grid">
+                    <!-- Menu items will be loaded here by JavaScript -->
+                    <div id="menu-loading">Loading our delicious menu...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery">
+            <div class="container">
+                <h2 class="fade-in">A Feast for the Eyes</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item fade-in"><img src="https://placehold.co/400x400/A42A28/FFFFFF?text=Gourmet+Pizza" alt="Gourmet Pizza"></div>
+                    <div class="gallery-item fade-in"><img src="https://placehold.co/400x400/5D4037/FFFFFF?text=Stuffed+Pizza" alt="Stuffed Pizza"></div>
+                    <div class="gallery-item fade-in"><img src="https://placehold.co/400x400/A42A28/FFFFFF?text=Hoagie" alt="Hoagie"></div>
+                    <div class="gallery-item fade-in"><img src="https://placehold.co/400x400/5D4037/FFFFFF?text=Jumbo+Wings" alt="Jumbo Wings"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="fade-in">Visit Us</h2>
+                <div class="contact-content fade-in">
+                    <div class="contact-info">
+                        <h3>Get In Touch</h3>
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Conca+D'oro+Pizzeria+926+Presque+Isle+Dr+Pittsburgh+PA+15239" target="_blank" rel="noopener noreferrer">
+                                926 Presque Isle Dr, Pittsburgh, PA 15239 🍕
+                            </a>
+                        </p>
+                        <p>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:724-325-1779">(724) 325-1779</a>
+                        </p>
+                        <p><i class="fas fa-clock"></i> <strong>Hours:</strong></p>
+                        <p style="margin-left: 30px;">Tuesday - Sunday: 4:00 PM - 9:30 PM</p>
+                        <p style="margin-left: 30px;">Closed Mondays</p>
+                        <p><i class="fas fa-truck"></i> <strong>Delivery:</strong> $3.00 Fee (Limited Area)</p>
+                    </div>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3033.242795817217!2d-79.76101468459999!3d40.49209297935634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834947b86427287%3A0x629b3636a8c23a73!2sConca%20D'oro%20Pizzeria!5e0!3m2!1sen!2sus!4v1678886454321!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Enlarged gallery image" class="lightbox-image">
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p><strong>CASH OR CHECK ONLY - ATM AVAILABLE INSIDE</strong></p>
+            <p>&copy; <span id="year"></span> Conca D'oro Pizzeria. All Rights Reserved. Website by a Pro Designer.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for Enhanced Interactive Elements
+
+        // 1. Mobile Hamburger Menu
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
+
+        // 2. Dynamic Year for Footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // 3. Header Style Change on Scroll
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 4. Active Nav Link Highlighting on Scroll
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-menu .nav-link:not(.nav-cta)");
+
+        window.addEventListener("scroll", ()=> {
+            let current = "";
+            sections.forEach( section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 75)) { // Adjust offset for header height
+                    current = section.getAttribute("id");
+                }
+            })
+
+            navLinks.forEach( a => {
+                a.classList.remove("active");
+                if(a.getAttribute("href") == "#" + current){
+                    a.classList.add("active");
+                }
+            })
+        });
+
+        // 5. Fade-in Animation on Scroll
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // 6. Lightbox Gallery
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImage = document.querySelector('.lightbox-image');
+        const galleryImages = document.querySelectorAll('.gallery-item img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+
+        galleryImages.forEach(image => {
+            image.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                lightboxImage.src = image.src;
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImage) {
+                closeLightbox();
+            }
+        });
+
+        // 7. Fetch and Display Menu from Google Sheet
+        document.addEventListener('DOMContentLoaded', () => {
+            const sheetId = '1g36DNStCX6qxWC2Ev5hICMYdaiygKkorXYbLvDJmH7w';
+            const base = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?`;
+            const sheetName = 'menu';
+            const query = encodeURIComponent('Select *');
+            const url = `${base}&sheet=${sheetName}&tq=${query}`;
+
+            const menuGrid = document.getElementById('menu-grid');
+            const menuLoading = document.getElementById('menu-loading');
+
+            fetch(url)
+                .then(res => res.text())
+                .then(text => {
+                    const jsonData = JSON.parse(text.substring(47).slice(0, -2));
+                    const rows = jsonData.table.rows;
+
+                    const menuData = {};
+                    rows.forEach(row => {
+                        // Ensure row and its cell 'c' are not null
+                        if (!row || !row.c) return;
+                        const category = row.c[0] ? row.c[0].v : 'Uncategorized';
+                        const item = {
+                            name: row.c[1] ? row.c[1].v : '',
+                            price: row.c[2] ? row.c[2].v : '',
+                            description: row.c[3] ? row.c[3].v : ''
+                        };
+                        if (!menuData[category]) {
+                            menuData[category] = [];
+                        }
+                        menuData[category].push(item);
+                    });
+
+                    menuLoading.style.display = 'none';
+                    
+                    for (const category in menuData) {
+                        const categoryDiv = document.createElement('div');
+                        categoryDiv.className = 'menu-category fade-in';
+                        
+                        const categoryTitle = document.createElement('h3');
+                        categoryTitle.textContent = category;
+                        categoryDiv.appendChild(categoryTitle);
+
+                        menuData[category].forEach(item => {
+                            const itemDiv = document.createElement('div');
+                            itemDiv.className = 'menu-item';
+
+                            const nameSpan = document.createElement('span');
+                            nameSpan.className = 'menu-item-name';
+                            nameSpan.textContent = item.name;
+                            itemDiv.appendChild(nameSpan);
+
+                            if(item.price) {
+                                const priceSpan = document.createElement('span');
+                                priceSpan.className = 'menu-item-price';
+                                priceSpan.textContent = item.price;
+                                itemDiv.appendChild(priceSpan);
+                            }
+
+                            if(item.description) {
+                                const descP = document.createElement('p');
+                                descP.className = 'menu-item-description';
+                                descP.textContent = item.description;
+                                itemDiv.appendChild(descP);
+                            }
+                            categoryDiv.appendChild(itemDiv);
+                        });
+                        menuGrid.appendChild(categoryDiv);
+                    }
+                    // Re-run the fade-in animation observer for the new elements
+                    const newFaders = document.querySelectorAll('.menu-category.fade-in');
+                    newFaders.forEach(fader => {
+                        appearOnScroll.observe(fader);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching menu data:', error);
+                    menuLoading.textContent = 'Sorry, we couldn\'t load the menu right now. Please try again later.';
+                });
+        });
+    </script>
+</body>
+</html>
