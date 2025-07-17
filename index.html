@@ -213,42 +213,52 @@
 
         /* 3. Hero Section */
         #home {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/1920x1080/444/fff?text=Delicious+Pizza') no-repeat center center/cover;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: var(--light-text);
-            padding-top: 0;
+            background-color: #1a1a1a;
         }
-
-        .hero-content h1 {
+        .hero-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .hero-text {
+            flex: 1;
+            padding: 4rem;
+            color: var(--light-text);
+            animation: slide-in-left 1s ease-out;
+        }
+        .hero-text h1 {
             font-size: 5rem;
             color: var(--light-text);
-            margin-bottom: 1rem;
-            text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
-            animation: slide-in-top 1s ease-out;
+            line-height: 1.1;
         }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
+        .hero-text .since {
             font-family: var(--font-body);
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-            animation: slide-in-bottom 1s ease-out;
+            font-size: 1.2rem;
+            color: var(--gold-accent);
+            margin-bottom: 1.5rem;
+            display: block;
         }
-        
-        @keyframes slide-in-top {
-            from { transform: translateY(-30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
         }
-        @keyframes slide-in-bottom {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .hero-image {
+            flex: 1;
+            background: url('https://placehold.co/800x1200/444/fff?text=Delicious+Pizza') no-repeat center center/cover;
+            height: 100vh;
+            animation: slide-in-right 1s ease-out;
         }
-
+        @keyframes slide-in-left {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slide-in-right {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
         .hero-cta {
             background-color: var(--gold-accent);
             color: var(--dark-text);
@@ -259,10 +269,8 @@
             text-decoration: none;
             transition: background-color 0.3s, transform 0.3s;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            animation: slide-in-bottom 1s ease-out 0.2s;
-            animation-fill-mode: backwards;
+            display: inline-block;
         }
-
         .hero-cta:hover {
             background-color: #ffc400;
             transform: scale(1.05);
@@ -446,7 +454,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.85);
+            background-color: rgba(0,0,0,0.9);
             z-index: 2000;
             display: flex;
             justify-content: center;
@@ -460,18 +468,37 @@
             visibility: visible;
         }
         .lightbox img {
-            max-width: 90%;
-            max-height: 80%;
+            max-width: 80vw;
+            max-height: 80vh;
             box-shadow: 0 0 25px rgba(0,0,0,0.5);
             border-radius: 5px;
         }
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 1rem;
+            transition: color 0.2s;
+        }
+        .lightbox-arrow:hover {
+            color: var(--gold-accent);
+        }
+        .lightbox-prev { left: 2rem; }
+        .lightbox-next { right: 2rem; }
         .lightbox-close {
             position: absolute;
-            top: 30px;
-            right: 30px;
+            top: 2rem;
+            right: 2rem;
             font-size: 2.5rem;
             color: #fff;
             cursor: pointer;
+            background: none;
+            border: none;
         }
 
         /* 8. Contact Section */
@@ -545,7 +572,10 @@
         }
         @media (max-width: 992px) {
             h2 { font-size: 2.2rem; }
-            .about-content, .contact-content { grid-template-columns: 1fr; }
+            .about-content, .contact-content, .hero-container { grid-template-columns: 1fr; flex-direction: column; }
+            .hero-image { display: none; } /* Hide image on smaller screens for simplicity */
+            .hero-text { padding: 6rem 2rem; text-align: center; }
+            .hero-text p { margin-left: auto; margin-right: auto; }
             .gallery-slide { grid-template-columns: repeat(2, 1fr); }
         }
 
@@ -589,8 +619,8 @@
                 transform: translateY(-8px) rotate(-45deg);
             }
 
-            .hero-content h1 { font-size: 2.8rem; }
-            .hero-content p { font-size: 1.2rem; }
+            .hero-content h1, .hero-text h1 { font-size: 2.8rem; }
+            .hero-text p { font-size: 1.2rem; }
             section { padding: 60px 5%; }
             .gallery-slide { grid-template-columns: repeat(2, 1fr); }
         }
@@ -634,10 +664,14 @@
     <main>
         <!-- Hero Section -->
         <section id="home">
-            <div class="hero-content">
-                <h1>Authentic Italian Pizza</h1>
-                <p>Family-owned and serving the best of Plum Borough since 1976.</p>
-                <a href="#menu" class="hero-cta">View Our Menu</a>
+            <div class="hero-container">
+                <div class="hero-text">
+                    <h1>Conca D'oro Pizzeria</h1>
+                    <span class="since">Authentic Italian Pizza Since 1976</span>
+                    <p>Family-owned and serving the best of Plum Borough for over four decades. Experience tradition in every slice.</p>
+                    <a href="#menu" class="hero-cta">View Our Menu</a>
+                </div>
+                <div class="hero-image"></div>
             </div>
         </section>
 
@@ -723,8 +757,10 @@
 
     <!-- Lightbox -->
     <div class="lightbox">
-        <span class="lightbox-close">&times;</span>
+        <button class="lightbox-arrow lightbox-prev"><i class="fas fa-chevron-left"></i></button>
         <img src="" alt="Enlarged gallery image" class="lightbox-image">
+        <button class="lightbox-arrow lightbox-next"><i class="fas fa-chevron-right"></i></button>
+        <button class="lightbox-close">&times;</button>
     </div>
 
     <!-- Footer -->
@@ -818,38 +854,71 @@
         const lightbox = document.querySelector('.lightbox');
         const lightboxImage = document.querySelector('.lightbox-image');
         const lightboxClose = document.querySelector('.lightbox-close');
+        const lightboxPrev = document.querySelector('.lightbox-prev');
+        const lightboxNext = document.querySelector('.lightbox-next');
+        let currentImageIndex;
 
-        function openLightbox(src) {
+        const galleryImagesData = [
+            { src: 'photos/image_1.png', alt: 'Our Famous Hand-Tossed Pizza', text: 'Hand-Tossed Pizza' },
+            { src: 'photos/image_2.png', alt: 'Deliciously Stuffed Calzone', text: 'Stuffed Calzone' },
+            { src: 'photos/image_3.png', alt: 'Fresh Italian Hoagie', text: 'Italian Hoagie' },
+            { src: 'photos/image_4.png', alt: 'Gourmet Stuffed Pan Pizza', text: 'Gourmet Stuffed Pan Pizza' },
+            { src: 'photos/image_5.png', alt: 'Crispy Jumbo Wings', text: 'Jumbo Wings' },
+            { src: 'photos/image_6.png', alt: 'A slice of heaven', text: 'Classic Pepperoni' },
+            { src: 'photos/image_7.png', alt: 'Our fresh ingredients', text: 'Fresh Ingredients' },
+            { src: 'photos/image_8.png', alt: 'Hot and ready to serve', text: 'Hot & Ready' },
+            { src: 'photos/image_9.png', alt: 'Chef preparing a pizza', text: 'Made with Love' },
+            { src: 'photos/image_10.png', alt: 'The Conca D\'oro Special', text: 'The Conca D\'oro Special' }
+        ];
+
+        function showImage(index) {
+            currentImageIndex = index;
+            lightboxImage.src = galleryImagesData[currentImageIndex].src;
+        }
+        
+        function openLightbox(index) {
             lightbox.classList.add('active');
-            lightboxImage.src = src;
+            showImage(index);
         }
 
-        const closeLightbox = () => {
+        function closeLightbox() {
             lightbox.classList.remove('active');
+        }
+        
+        function showNextImage() {
+            const nextIndex = (currentImageIndex + 1) % galleryImagesData.length;
+            showImage(nextIndex);
+        }
+
+        function showPrevImage() {
+            const prevIndex = (currentImageIndex - 1 + galleryImagesData.length) % galleryImagesData.length;
+            showImage(prevIndex);
         }
 
         lightboxClose.addEventListener('click', closeLightbox);
+        lightboxNext.addEventListener('click', showNextImage);
+        lightboxPrev.addEventListener('click', showPrevImage);
+
         lightbox.addEventListener('click', (e) => {
-            if (e.target !== lightboxImage) {
+            if (e.target === lightbox) {
                 closeLightbox();
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'ArrowRight') {
+                    showNextImage();
+                } else if (e.key === 'ArrowLeft') {
+                    showPrevImage();
+                } else if (e.key === 'Escape') {
+                    closeLightbox();
+                }
             }
         });
         
         // 7. Dynamic Carousel Gallery
         document.addEventListener('DOMContentLoaded', () => {
-            const galleryImagesData = [
-                { src: 'photos/image_1.png', alt: 'Our Famous Hand-Tossed Pizza', text: 'Hand-Tossed Pizza' },
-                { src: 'photos/image_2.png', alt: 'Deliciously Stuffed Calzone', text: 'Stuffed Calzone' },
-                { src: 'photos/image_3.png', alt: 'Fresh Italian Hoagie', text: 'Italian Hoagie' },
-                { src: 'photos/image_4.png', alt: 'Gourmet Stuffed Pan Pizza', text: 'Gourmet Stuffed Pan Pizza' },
-                { src: 'photos/image_5.png', alt: 'Crispy Jumbo Wings', text: 'Jumbo Wings' },
-                { src: 'photos/image_6.png', alt: 'A slice of heaven', text: 'Classic Pepperoni' },
-                { src: 'photos/image_7.png', alt: 'Our fresh ingredients', text: 'Fresh Ingredients' },
-                { src: 'photos/image_8.png', alt: 'Hot and ready to serve', text: 'Hot & Ready' },
-                { src: 'photos/image_9.png', alt: 'Chef preparing a pizza', text: 'Made with Love' },
-                { src: 'photos/image_10.png', alt: 'The Conca D\'oro Special', text: 'The Conca D\'oro Special' }
-            ];
-
             const carousel = document.querySelector('.gallery-carousel');
             let currentIndex = 0;
             let slideInterval;
@@ -872,7 +941,10 @@
                                 <img src="${itemData.src}" alt="${itemData.alt}">
                                 <div class="overlay">${itemData.text}</div>
                             `;
-                            item.querySelector('img').addEventListener('click', () => openLightbox(itemData.src));
+                            // Use a closure to capture the correct index
+                            (function(index) {
+                                item.querySelector('img').addEventListener('click', () => openLightbox(index));
+                            })(imageIndex);
                             slide.appendChild(item);
                             imageIndex++;
                         }
