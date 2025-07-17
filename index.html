@@ -115,6 +115,17 @@
             color: var(--light-text);
             text-decoration: none;
         }
+        
+        .nav-logo span {
+            display: inline-block;
+            animation: wave-emoji 2.5s ease-in-out infinite alternate;
+            transform-origin: 70% 70%;
+        }
+
+        @keyframes wave-emoji {
+          from { transform: rotate(10deg); }
+          to { transform: rotate(-5deg); }
+        }
 
         .nav-menu {
             display: flex;
@@ -187,9 +198,8 @@
             background-color: var(--light-text);
         }
 
-        /* 3. Hero Section */
+        /* 3. Hero Section & Animated Flag */
         #home {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080/5D4037/FFFFFF?text=Delicious+Conca+D\'oro+Pizza') no-repeat center center/cover;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -197,6 +207,42 @@
             text-align: center;
             color: var(--light-text);
             padding-top: 0;
+            position: relative;
+            background-color: #333;
+        }
+
+        .animated-flag-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            z-index: 0;
+            animation: wave-bg 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes wave-bg {
+            from { transform: skewY(-8deg); }
+            to { transform: skewY(8deg); }
+        }
+
+        .animated-flag-background .stripe {
+            width: 33.34%;
+            height: 130%;
+            transform: translateY(-15%);
+        }
+
+        .animated-flag-background .green { background-color: var(--italian-green); }
+        .animated-flag-background .white { background-color: var(--italian-white); }
+        .animated-flag-background .red { background-color: var(--italian-red); }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(0,0,0,0.6);
+            padding: 2rem 4rem;
+            border-radius: 15px;
         }
 
         .hero-content h1 {
@@ -502,7 +548,7 @@
                 <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
                 <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-                <li class="nav-item"><a href="#" class="nav-link nav-cta">Order Online</a></li>
+                <li class="nav-item"><a href="tel:724-325-1779" class="nav-link nav-cta">Call: (724) 325-1779</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -515,6 +561,11 @@
     <main>
         <!-- Hero Section -->
         <section id="home">
+            <div class="animated-flag-background">
+                <div class="stripe green"></div>
+                <div class="stripe white"></div>
+                <div class="stripe red"></div>
+            </div>
             <div class="hero-content">
                 <h1>Authentic Italian Pizza</h1>
                 <p>Family-owned and serving the best of Plum Borough since 1976.</p>
@@ -533,7 +584,7 @@
                         <p>We're proud to be a family-owned and operated establishment right here in the Pittsburgh area. Every pizza we craft, every hoagie we build, is a piece of our heritage. From our famous Pan Pizza to our Gourmet Hand-Tossed creations, we pour our hearts into our food. Thank you for being a part of our story.</p>
                     </div>
                     <div class="about-image fade-in">
-                        <img src="https://placehold.co/600x400/CE2B37/FFFFFF?text=Our+Pizzeria" alt="Inside of Conca D'oro Pizzeria">
+                        <img src="owner.jpg" alt="The owner of Conca D'oro Pizzeria">
                     </div>
                 </div>
             </div>
