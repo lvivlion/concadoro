@@ -119,11 +119,9 @@
         }
         
         .nav-flag {
-            width: 1.5em;
-            height: 1em;
-            margin-left: 0.5rem;
-            border: 1px solid rgba(255,255,255,0.3);
-            display: inline-block;
+            width: 2.5em;
+            height: auto;
+            margin-left: 0.75rem;
         }
 
         .nav-menu {
@@ -229,13 +227,20 @@
             animation: slide-in-left 1s ease-out;
         }
         .hero-text h1 {
-            font-size: 5rem;
+            font-size: 3.5rem;
             color: var(--light-text);
-            line-height: 1.1;
+            line-height: 1.2;
+        }
+        /* Style for Italian Flag Gradient Text */
+        .flag-gradient {
+            background: linear-gradient(to right, var(--italian-green) 33%, var(--italian-white) 33%, var(--italian-white) 66%, var(--italian-red) 66%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         .hero-text .since {
             font-family: var(--font-body);
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             color: var(--gold-accent);
             margin-bottom: 1.5rem;
             display: block;
@@ -509,6 +514,7 @@
             background-color: #fff;
             padding: 3rem;
             border-radius: 10px;
+            align-items: start;
         }
         .contact-info p {
             margin-bottom: 1rem;
@@ -530,10 +536,14 @@
         .contact-info a:hover {
             color: var(--italian-green);
         }
+        /* Styles for the map container */
+        .map-container {
+            min-height: 300px;
+            height: 100%;
+        }
         .map-container iframe {
             width: 100%;
             height: 100%;
-            min-height: 300px;
             border: 0;
             border-radius: 10px;
         }
@@ -565,8 +575,33 @@
             color: var(--light-text);
             text-decoration: none;
         }
+
+        /* 10. Floating Phone Button */
+        .floating-phone-btn {
+            display: none; /* Hidden by default, shown in media query */
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--italian-green);
+            color: var(--italian-white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 999;
+            transition: background-color 0.3s, transform 0.3s;
+            /* Flexbox for perfect centering */
+            justify-content: center;
+            align-items: center;
+        }
+        .floating-phone-btn:hover {
+            background-color: #007a3a; /* A slightly darker green */
+            transform: scale(1.08);
+        }
         
-        /* 10. Responsive Design */
+        /* 11. Responsive Design */
         @media (max-width: 1100px) {
             .carousel-arrow { display: none; }
         }
@@ -577,6 +612,7 @@
             .hero-text { padding: 6rem 2rem; text-align: center; }
             .hero-text p { margin-left: auto; margin-right: auto; }
             .gallery-slide { grid-template-columns: repeat(2, 1fr); }
+            .contact-content { gap: 2rem; }
         }
 
         @media (max-width: 768px) {
@@ -619,10 +655,18 @@
                 transform: translateY(-8px) rotate(-45deg);
             }
 
-            .hero-content h1, .hero-text h1 { font-size: 2.8rem; }
-            .hero-text p { font-size: 1.2rem; }
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            .hero-text .since {
+                font-size: 1.3rem;
+            }
             section { padding: 60px 5%; }
             .gallery-slide { grid-template-columns: repeat(2, 1fr); }
+
+            .floating-phone-btn {
+                display: flex;
+            }
         }
         @media (max-width: 576px) {
             .gallery-slide { grid-template-columns: 1fr; }
@@ -636,11 +680,9 @@
     <header class="header">
         <nav class="navbar">
             <a href="#home" class="nav-logo">Conca D'oro 
-                <svg class="nav-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2">
-                    <rect width="1" height="2" fill="#009246"/>
-                    <rect width="1" height="2" x="1" fill="#fff"/>
-                    <rect width="1" height="2" x="2" fill="#ce2b37"/>
-                </svg>
+                <!-- Using local flag.png image -->
+                <img src="flag.png" alt="Italian Flag" class="nav-flag"
+                     onerror="this.onerror=null; this.style.display='none'">
             </a>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
@@ -666,8 +708,8 @@
         <section id="home">
             <div class="hero-container">
                 <div class="hero-text">
-                    <h1>Conca D'oro Pizzeria</h1>
-                    <span class="since">Authentic Italian Pizza Since 1976</span>
+                    <h1>Authentic <span class="flag-gradient">Italian</span> Pizza Since 1976</h1>
+                    <span class="since">Conca D'oro Pizzeria</span>
                     <p>Family-owned and serving the best of Plum Borough for over four decades. Experience tradition in every slice.</p>
                     <a href="#menu" class="hero-cta">View Our Menu</a>
                 </div>
@@ -686,7 +728,7 @@
                         <p>We're proud to be a family-owned and operated establishment right here in the Pittsburgh area. Every pizza we craft, every hoagie we build, is a piece of our heritage. From our famous Pan Pizza to our Gourmet Hand-Tossed creations, we pour our hearts into our food. Thank you for being a part of our story.</p>
                     </div>
                     <div class="about-image fade-in">
-                        <img src="photos/owner.jpg" alt="The owner of Conca D'oro Pizzeria">
+                        <img src="photos/owner.jpg" alt="The owner of Conca D'oro Pizzeria" onerror="this.onerror=null;this.src='https://placehold.co/600x400/ccc/fff?text=Our+Family';">
                     </div>
                 </div>
             </div>
@@ -747,8 +789,9 @@
                         <p style="margin-left: 30px;">Closed Mondays</p>
                         <p><i class="fas fa-truck"></i> <strong>Delivery:</strong> $3.00 Fee (Limited Area)</p>
                     </div>
+                    <!-- Restored Google Map with updated embed code -->
                     <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3033.242795817217!2d-79.76101468459999!3d40.49209297935634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834947b86427287%3A0x629b3636a8c23a73!2sConca%20D'oro%20Pizzeria!5e0!3m2!1sen!2sus!4v1678886454321!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3033.242795817217!2d-79.76313962369616!3d40.49209295321858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834947b86427287%3A0x629b3636a8c23a73!2sConca%20D'oro%20Pizzeria!5e0!3m2!1sen!2sus!4v1721221869680!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -762,6 +805,11 @@
         <button class="lightbox-arrow lightbox-next"><i class="fas fa-chevron-right"></i></button>
         <button class="lightbox-close">&times;</button>
     </div>
+
+    <!-- Floating Action Button for Mobile -->
+    <a href="tel:724-325-1779" class="floating-phone-btn" aria-label="Call Conca D'oro Pizzeria">
+        <i class="fas fa-phone"></i>
+    </a>
 
     <!-- Footer -->
     <footer class="footer">
@@ -791,8 +839,10 @@
         });
 
         document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
-            hamburger.classList.remove("active");
-            navMenu.classList.remove("active");
+            if (n.closest('.nav-cta-container') === null) { // Don't close menu for main CTA button
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+            }
         }));
 
         // 2. Dynamic Year for Footer
@@ -873,7 +923,13 @@
 
         function showImage(index) {
             currentImageIndex = index;
-            lightboxImage.src = galleryImagesData[currentImageIndex].src;
+            const imgData = galleryImagesData[currentImageIndex];
+            lightboxImage.src = imgData.src;
+            lightboxImage.alt = imgData.alt;
+            lightboxImage.onerror = function() {
+                this.onerror=null;
+                this.src='https://placehold.co/800x600/ccc/fff?text=Image+Not+Found';
+            };
         }
         
         function openLightbox(index) {
@@ -938,7 +994,7 @@
                             const item = document.createElement('div');
                             item.classList.add('gallery-item');
                             item.innerHTML = `
-                                <img src="${itemData.src}" alt="${itemData.alt}">
+                                <img src="${itemData.src}" alt="${itemData.alt}" onerror="this.onerror=null;this.parentElement.style.display='none';">
                                 <div class="overlay">${itemData.text}</div>
                             `;
                             // Use a closure to capture the correct index
