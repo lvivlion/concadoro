@@ -119,7 +119,7 @@
         }
         
         .nav-flag {
-            width: 2.5em;
+            width: 1.8em;
             height: auto;
             margin-left: 0.75rem;
         }
@@ -578,7 +578,7 @@
 
         /* 10. Floating Phone Button */
         .floating-phone-btn {
-            display: none; /* Hidden by default, shown in media query */
+            display: none;
             position: fixed;
             bottom: 25px;
             right: 25px;
@@ -589,16 +589,29 @@
             border-radius: 50%;
             text-align: center;
             font-size: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             z-index: 999;
-            transition: background-color 0.3s, transform 0.3s;
-            /* Flexbox for perfect centering */
+            transition: transform 0.3s;
             justify-content: center;
             align-items: center;
+            /* Added Italian glow animation */
+            animation: italian-glow 3s ease-in-out infinite;
         }
+        
+        /* Keyframes for the Italian-themed glow */
+        @keyframes italian-glow {
+            0%, 100% {
+                box-shadow: 0 0 10px 2px var(--italian-green), 0 0 16px 5px rgba(0, 146, 70, 0.5);
+            }
+            33% {
+                box-shadow: 0 0 10px 2px var(--italian-white), 0 0 16px 5px rgba(244, 245, 240, 0.5);
+            }
+            66% {
+                box-shadow: 0 0 10px 2px var(--italian-red), 0 0 16px 5px rgba(206, 43, 55, 0.5);
+            }
+        }
+
         .floating-phone-btn:hover {
-            background-color: #007a3a; /* A slightly darker green */
-            transform: scale(1.08);
+            transform: scale(1.1);
         }
         
         /* 11. Responsive Design */
@@ -680,7 +693,6 @@
     <header class="header">
         <nav class="navbar">
             <a href="#home" class="nav-logo">Conca D'oro 
-                <!-- Using local flag.png image -->
                 <img src="flag.png" alt="Italian Flag" class="nav-flag"
                      onerror="this.onerror=null; this.style.display='none'">
             </a>
@@ -789,7 +801,6 @@
                         <p style="margin-left: 30px;">Closed Mondays</p>
                         <p><i class="fas fa-truck"></i> <strong>Delivery:</strong> $3.00 Fee (Limited Area)</p>
                     </div>
-                    <!-- Restored Google Map with updated embed code -->
                     <div class="map-container">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3033.242795817217!2d-79.76313962369616!3d40.49209295321858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834947b86427287%3A0x629b3636a8c23a73!2sConca%20D'oro%20Pizzeria!5e0!3m2!1sen!2sus!4v1721221869680!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
@@ -808,7 +819,8 @@
 
     <!-- Floating Action Button for Mobile -->
     <a href="tel:724-325-1779" class="floating-phone-btn" aria-label="Call Conca D'oro Pizzeria">
-        <i class="fas fa-phone"></i>
+        <!-- Using a different Font Awesome icon -->
+        <i class="fas fa-phone-alt"></i>
     </a>
 
     <!-- Footer -->
