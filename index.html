@@ -6,26 +6,26 @@
     <meta name="description" content="Conca D'oro Pizzeria, a family-owned restaurant serving authentic Italian pizza, hoagies, and more in Plum Borough, Pittsburgh, PA since 1976. Visit us at 926 Presque Isle Dr.">
     <title>Conca D'oro Pizzeria | Plum, Pittsburgh PA | Authentic Italian Pizza</title>
     
-    <!-- Google Fonts: Playfair Display & Lato -->
+    <!-- Google Fonts: Cinzel & Lato -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* CSS - Enhanced Modern Rustic Italian Theme */
+        /* CSS - Italian Patriotic Theme */
 
         /* 1. Variables & Global Resets */
         :root {
-            --primary-red: #A42A28;
-            --creamy-white: #F5F5DC;
-            --earthy-brown: #5D4037;
+            --italian-green: #009246;
+            --italian-white: #f4f5f0;
+            --italian-red: #CE2B37;
             --gold-accent: #FFD700;
             --dark-text: #333333;
             --light-text: #f8f8f8;
-            --font-heading: 'Playfair Display', serif;
+            --font-heading: 'Cinzel', serif;
             --font-body: 'Lato', sans-serif;
         }
 
@@ -41,26 +41,41 @@
 
         body {
             font-family: var(--font-body);
-            background-color: var(--creamy-white);
+            background-color: var(--italian-white);
             color: var(--dark-text);
             line-height: 1.6;
         }
 
         h1, h2, h3 {
             font-family: var(--font-heading);
-            color: var(--primary-red);
+            color: var(--italian-red);
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         h2 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             text-align: center;
             margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(to right, var(--italian-green) 33.3%, var(--italian-white) 33.3%, var(--italian-white) 66.6%, var(--italian-red) 66.6%);
+            border-radius: 2px;
         }
 
         section {
             padding: 100px 5%;
-            overflow: hidden; /* Prevents scrollbars from appearing during animations */
+            overflow: hidden; 
         }
 
         .container {
@@ -127,7 +142,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--gold-accent);
+            background-color: var(--italian-green);
             transition: width 0.3s ease;
         }
 
@@ -155,7 +170,7 @@
         }
         
         .nav-cta::after {
-            display: none; /* No underline for the button */
+            display: none;
         }
 
         .hamburger {
@@ -168,7 +183,6 @@
             width: 25px;
             height: 3px;
             margin: 5px auto;
-            -webkit-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;
             background-color: var(--light-text);
         }
@@ -196,6 +210,7 @@
             font-size: 1.5rem;
             margin-bottom: 2rem;
             max-width: 600px;
+            font-family: var(--font-body);
         }
 
         .hero-cta {
@@ -220,7 +235,7 @@
             background-color: #fff;
         }
         #menu {
-            background-color: var(--creamy-white);
+            background-color: var(--italian-white);
         }
         .fade-in {
             opacity: 0;
@@ -248,7 +263,7 @@
 
         /* 6. Menu Section */
         .menu-special-banner {
-            background-color: var(--primary-red);
+            background-color: var(--italian-green);
             color: var(--light-text);
             text-align: center;
             padding: 1.5rem;
@@ -263,6 +278,7 @@
         .menu-special-banner p {
             font-size: 1.2rem;
             margin: 0;
+            font-family: var(--font-body);
         }
         .menu-grid {
             display: grid;
@@ -276,9 +292,14 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         .menu-category h3 {
-            border-bottom: 2px solid var(--gold-accent);
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
+        }
+        .menu-grid .menu-category:nth-child(odd) h3 {
+             border-bottom: 2px solid var(--italian-red);
+        }
+        .menu-grid .menu-category:nth-child(even) h3 {
+             border-bottom: 2px solid var(--italian-green);
         }
         .menu-item {
             display: flex;
@@ -306,7 +327,6 @@
             font-size: 1.2rem;
             padding: 3rem;
         }
-
 
         /* 7. Gallery Section & Lightbox */
         .gallery-grid {
@@ -377,7 +397,7 @@
             align-items: flex-start;
         }
         .contact-info i {
-            color: var(--primary-red);
+            color: var(--italian-red);
             margin-right: 10px;
             width: 20px;
             margin-top: 4px;
@@ -388,7 +408,7 @@
             transition: color 0.3s;
         }
         .contact-info a:hover {
-            color: var(--primary-red);
+            color: var(--italian-green);
         }
         .map-container iframe {
             width: 100%;
@@ -449,7 +469,7 @@
 
             .hamburger {
                 display: block;
-                z-index: 1001; /* Ensure it's above the nav menu */
+                z-index: 1001;
             }
 
             .hamburger.active .bar:nth-child(2) {
@@ -476,7 +496,7 @@
     <!-- Header & Navigation -->
     <header class="header">
         <nav class="navbar">
-            <a href="#home" class="nav-logo">Conca D'oro</a>
+            <a href="#home" class="nav-logo">Conca D'oro <span>🇮🇹</span></a>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
@@ -513,7 +533,7 @@
                         <p>We're proud to be a family-owned and operated establishment right here in the Pittsburgh area. Every pizza we craft, every hoagie we build, is a piece of our heritage. From our famous Pan Pizza to our Gourmet Hand-Tossed creations, we pour our hearts into our food. Thank you for being a part of our story.</p>
                     </div>
                     <div class="about-image fade-in">
-                        <img src="https://placehold.co/600x400/A42A28/FFFFFF?text=Our+Pizzeria" alt="Inside of Conca D'oro Pizzeria">
+                        <img src="https://placehold.co/600x400/CE2B37/FFFFFF?text=Our+Pizzeria" alt="Inside of Conca D'oro Pizzeria">
                     </div>
                 </div>
             </div>
@@ -541,10 +561,10 @@
             <div class="container">
                 <h2 class="fade-in">A Feast for the Eyes</h2>
                 <div class="gallery-grid">
-                    <div class="gallery-item fade-in"><img src="https://placehold.co/400x400/A42A28/FFFFFF?text=Gourmet+Pizza" alt="Gourmet Pizza"></div>
-                    <div class="gallery-item fade-in"><img src="https://placehold.co/400x400/5D4037/FFFFFF?text=Stuffed+Pizza" alt="Stuffed Pizza"></div>
-                    <div class="gallery-item fade-in"><img src="https://placehold.co/400x400/A42A28/FFFFFF?text=Hoagie" alt="Hoagie"></div>
-                    <div class="gallery-item fade-in"><img src="https://placehold.co/400x400/5D4037/FFFFFF?text=Jumbo+Wings" alt="Jumbo Wings"></div>
+                    <div class="gallery-item fade-in"><img src="https://placehold.co/400x400/CE2B37/FFFFFF?text=Gourmet+Pizza" alt="Gourmet Pizza"></div>
+                    <div class="gallery-item fade-in"><img src="https://placehold.co/400x400/009246/FFFFFF?text=Stuffed+Pizza" alt="Stuffed Pizza"></div>
+                    <div class="gallery-item fade-in"><img src="https://placehold.co/400x400/CE2B37/FFFFFF?text=Hoagie" alt="Hoagie"></div>
+                    <div class="gallery-item fade-in"><img src="https://placehold.co/400x400/009246/FFFFFF?text=Jumbo+Wings" alt="Jumbo Wings"></div>
                 </div>
             </div>
         </section>
@@ -635,7 +655,7 @@
             let current = "";
             sections.forEach( section => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - 75)) { // Adjust offset for header height
+                if (pageYOffset >= (sectionTop - 75)) {
                     current = section.getAttribute("id");
                 }
             })
@@ -712,7 +732,6 @@
 
                     const menuData = {};
                     rows.forEach(row => {
-                        // Ensure row and its cell 'c' are not null
                         if (!row || !row.c) return;
                         const category = row.c[0] ? row.c[0].v : 'Uncategorized';
                         const item = {
@@ -728,7 +747,17 @@
 
                     menuLoading.style.display = 'none';
                     
-                    for (const category in menuData) {
+                    const categoryOrder = ["Hand-Tossed Pizza", "Homemade Pan Pizza", "Gourmet Stuffed Pan Pizza", "Gourmet Hand-Tossed Pizza", "Toppings", "Salads", "Hoagies", "Specialty Sides"];
+                    
+                    const sortedCategories = Object.keys(menuData).sort((a, b) => {
+                        let indexA = categoryOrder.indexOf(a);
+                        let indexB = categoryOrder.indexOf(b);
+                        if (indexA === -1) indexA = categoryOrder.length;
+                        if (indexB === -1) indexB = categoryOrder.length;
+                        return indexA - indexB;
+                    });
+
+                    for (const category of sortedCategories) {
                         const categoryDiv = document.createElement('div');
                         categoryDiv.className = 'menu-category fade-in';
                         
@@ -762,7 +791,6 @@
                         });
                         menuGrid.appendChild(categoryDiv);
                     }
-                    // Re-run the fade-in animation observer for the new elements
                     const newFaders = document.querySelectorAll('.menu-category.fade-in');
                     newFaders.forEach(fader => {
                         appearOnScroll.observe(fader);
