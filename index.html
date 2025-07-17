@@ -128,6 +128,7 @@
 
         .nav-menu {
             display: flex;
+            align-items: center;
             list-style: none;
         }
 
@@ -164,19 +165,32 @@
             color: var(--gold-accent);
         }
         
+        .nav-cta-container {
+            border-radius: 50px;
+            padding: 2px;
+            background: linear-gradient(90deg, var(--italian-green), var(--italian-white), var(--italian-red));
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px var(--italian-green), 0 0 10px var(--italian-red); }
+            50% { box-shadow: 0 0 20px var(--italian-green), 0 0 30px var(--italian-red); }
+            100% { box-shadow: 0 0 5px var(--italian-green), 0 0 10px var(--italian-red); }
+        }
+
         .nav-cta {
-            background-color: var(--gold-accent);
-            color: var(--dark-text);
-            padding: 0.75rem 1.5rem;
+            background-color: #222;
+            color: var(--light-text);
+            padding: 0.6rem 1.4rem;
             border-radius: 50px;
             font-weight: 700;
             transition: background-color 0.3s, transform 0.3s;
+            display: block;
         }
         
         .nav-cta:hover {
-            background-color: #ffc400;
-            color: var(--dark-text);
-            transform: scale(1.05);
+            background-color: #000;
+            color: var(--gold-accent);
         }
         
         .nav-cta::after {
@@ -199,7 +213,7 @@
 
         /* 3. Hero Section */
         #home {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080/444/fff?text=Delicious+Pizza') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/1920x1080/444/fff?text=Delicious+Pizza') no-repeat center center/cover;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -209,17 +223,12 @@
             padding-top: 0;
         }
 
-        .hero-content {
-            background-color: rgba(0,0,0,0.5);
-            padding: 2rem 4rem;
-            border-radius: 10px;
-        }
-
         .hero-content h1 {
-            font-size: 4.5rem;
+            font-size: 5rem;
             color: var(--light-text);
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
+            animation: slide-in-top 1s ease-out;
         }
 
         .hero-content p {
@@ -227,6 +236,17 @@
             margin-bottom: 2rem;
             max-width: 600px;
             font-family: var(--font-body);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+            animation: slide-in-bottom 1s ease-out;
+        }
+        
+        @keyframes slide-in-top {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes slide-in-bottom {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .hero-cta {
@@ -239,6 +259,8 @@
             text-decoration: none;
             transition: background-color 0.3s, transform 0.3s;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: slide-in-bottom 1s ease-out 0.2s;
+            animation-fill-mode: backwards;
         }
 
         .hero-cta:hover {
@@ -355,9 +377,12 @@
         .gallery-container {
             position: relative;
         }
+        .gallery-carousel-wrapper {
+            overflow: hidden;
+        }
         .gallery-carousel {
             display: flex;
-            overflow: hidden;
+            transition: transform 0.5s ease-in-out;
         }
         .gallery-slide {
             min-width: 100%;
@@ -365,7 +390,6 @@
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(2, 1fr);
             gap: 1rem;
-            transition: transform 0.5s ease-in-out;
         }
         .gallery-item {
             position: relative;
@@ -389,16 +413,12 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: rgba(0,0,0,0.6);
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
             color: white;
-            padding: 1rem;
+            padding: 1.5rem 1rem 1rem;
             text-align: center;
             font-weight: bold;
-            transform: translateY(100%);
-            transition: transform 0.5s ease;
-        }
-        .gallery-item:hover .overlay {
-            transform: translateY(0);
+            font-size: 0.9rem;
         }
         .carousel-arrow {
             position: absolute;
@@ -417,8 +437,8 @@
         .carousel-arrow:hover {
             background-color: rgba(0,0,0,0.8);
         }
-        .prev-arrow { left: 10px; }
-        .next-arrow { right: 10px; }
+        .prev-arrow { left: -40px; }
+        .next-arrow { right: -40px; }
         
         .lightbox {
             position: fixed;
@@ -520,6 +540,9 @@
         }
         
         /* 10. Responsive Design */
+        @media (max-width: 1100px) {
+            .carousel-arrow { display: none; }
+        }
         @media (max-width: 992px) {
             h2 { font-size: 2.2rem; }
             .about-content, .contact-content { grid-template-columns: 1fr; }
@@ -569,6 +592,9 @@
             .hero-content h1 { font-size: 2.8rem; }
             .hero-content p { font-size: 1.2rem; }
             section { padding: 60px 5%; }
+            .gallery-slide { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 576px) {
             .gallery-slide { grid-template-columns: 1fr; }
         }
 
@@ -591,7 +617,11 @@
                 <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
                 <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-                <li class="nav-item"><a href="tel:724-325-1779" class="nav-link nav-cta">Call: (724) 325-1779</a></li>
+                <li class="nav-item">
+                    <div class="nav-cta-container">
+                         <a href="tel:724-325-1779" class="nav-link nav-cta">Call: (724) 325-1779</a>
+                    </div>
+                </li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -650,8 +680,10 @@
             <div class="container">
                 <h2 class="fade-in">A Feast for the Eyes</h2>
                 <div class="gallery-container fade-in">
-                    <div class="gallery-carousel">
-                        <!-- Slides will be generated by JS -->
+                    <div class="gallery-carousel-wrapper">
+                        <div class="gallery-carousel">
+                            <!-- Slides will be generated by JS -->
+                        </div>
                     </div>
                     <button class="carousel-arrow prev-arrow">&lt;</button>
                     <button class="carousel-arrow next-arrow">&gt;</button>
@@ -804,92 +836,94 @@
         });
         
         // 7. Dynamic Carousel Gallery
-        const galleryImagesData = [
-            { src: 'photos/image_1.png', alt: 'Our Famous Hand-Tossed Pizza', text: 'Hand-Tossed Pizza' },
-            { src: 'photos/image_2.png', alt: 'Deliciously Stuffed Calzone', text: 'Stuffed Calzone' },
-            { src: 'photos/image_3.png', alt: 'Fresh Italian Hoagie', text: 'Italian Hoagie' },
-            { src: 'photos/image_4.png', alt: 'Gourmet Stuffed Pan Pizza', text: 'Gourmet Stuffed Pan Pizza' },
-            { src: 'photos/image_5.png', alt: 'Crispy Jumbo Wings', text: 'Jumbo Wings' },
-            { src: 'photos/image_6.png', alt: 'A slice of heaven', text: 'Classic Pepperoni' },
-            { src: 'photos/image_7.png', alt: 'Our fresh ingredients', text: 'Fresh Ingredients' },
-            { src: 'photos/image_8.png', alt: 'Hot and ready to serve', text: 'Hot & Ready' },
-            { src: 'photos/image_9.png', alt: 'Chef preparing a pizza', text: 'Made with Love' },
-            { src: 'photos/image_10.png', alt: 'The Conca D\'oro Special', text: 'The Conca D\'oro Special' }
-        ];
+        document.addEventListener('DOMContentLoaded', () => {
+            const galleryImagesData = [
+                { src: 'photos/image_1.png', alt: 'Our Famous Hand-Tossed Pizza', text: 'Hand-Tossed Pizza' },
+                { src: 'photos/image_2.png', alt: 'Deliciously Stuffed Calzone', text: 'Stuffed Calzone' },
+                { src: 'photos/image_3.png', alt: 'Fresh Italian Hoagie', text: 'Italian Hoagie' },
+                { src: 'photos/image_4.png', alt: 'Gourmet Stuffed Pan Pizza', text: 'Gourmet Stuffed Pan Pizza' },
+                { src: 'photos/image_5.png', alt: 'Crispy Jumbo Wings', text: 'Jumbo Wings' },
+                { src: 'photos/image_6.png', alt: 'A slice of heaven', text: 'Classic Pepperoni' },
+                { src: 'photos/image_7.png', alt: 'Our fresh ingredients', text: 'Fresh Ingredients' },
+                { src: 'photos/image_8.png', alt: 'Hot and ready to serve', text: 'Hot & Ready' },
+                { src: 'photos/image_9.png', alt: 'Chef preparing a pizza', text: 'Made with Love' },
+                { src: 'photos/image_10.png', alt: 'The Conca D\'oro Special', text: 'The Conca D\'oro Special' }
+            ];
 
-        const carousel = document.querySelector('.gallery-carousel');
-        let currentIndex = 0;
-        let slideInterval;
-
-        function createSlides() {
+            const carousel = document.querySelector('.gallery-carousel');
+            let currentIndex = 0;
+            let slideInterval;
             const itemsPerSlide = 6;
             const totalSlides = Math.ceil(galleryImagesData.length / itemsPerSlide);
-            
-            // Duplicate images to ensure seamless looping, especially if not a multiple of 6
-            const allImages = [...galleryImagesData, ...galleryImagesData, ...galleryImagesData];
 
-            let imageIndex = 0;
-            for (let i = 0; i < totalSlides * 2; i++) { // Create more slides for looping
-                const slide = document.createElement('div');
-                slide.classList.add('gallery-slide');
-                for (let j = 0; j < itemsPerSlide; j++) {
-                    const itemData = allImages[imageIndex % allImages.length];
-                    const item = document.createElement('div');
-                    item.classList.add('gallery-item');
-                    item.innerHTML = `
-                        <img src="${itemData.src}" alt="${itemData.alt}">
-                        <div class="overlay">${itemData.text}</div>
-                    `;
-                    item.querySelector('img').addEventListener('click', () => openLightbox(itemData.src));
-                    slide.appendChild(item);
-                    imageIndex++;
+            function createSlides() {
+                carousel.innerHTML = ''; 
+                let imageIndex = 0;
+
+                for (let i = 0; i < totalSlides; i++) {
+                    const slide = document.createElement('div');
+                    slide.classList.add('gallery-slide');
+                    for (let j = 0; j < itemsPerSlide; j++) {
+                        if (imageIndex < galleryImagesData.length) {
+                            const itemData = galleryImagesData[imageIndex];
+                            const item = document.createElement('div');
+                            item.classList.add('gallery-item');
+                            item.innerHTML = `
+                                <img src="${itemData.src}" alt="${itemData.alt}">
+                                <div class="overlay">${itemData.text}</div>
+                            `;
+                            item.querySelector('img').addEventListener('click', () => openLightbox(itemData.src));
+                            slide.appendChild(item);
+                            imageIndex++;
+                        }
+                    }
+                    carousel.appendChild(slide);
                 }
-                carousel.appendChild(slide);
             }
-        }
 
-        function updateCarousel() {
-            const slideWidth = carousel.querySelector('.gallery-slide').clientWidth;
-            carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-        }
+            function updateCarousel() {
+                const slideWidth = carousel.querySelector('.gallery-slide').clientWidth;
+                carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            }
 
-        function nextSlide() {
-            const totalSlides = carousel.querySelectorAll('.gallery-slide').length;
-            currentIndex = (currentIndex + 1) % (totalSlides / 2); // Loop back
-            carousel.style.transition = 'transform 0.5s ease-in-out';
-            updateCarousel();
-        }
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            }
 
-        function prevSlide() {
-            const totalSlides = carousel.querySelectorAll('.gallery-slide').length;
-            currentIndex = (currentIndex - 1 + (totalSlides / 2)) % (totalSlides / 2);
-            carousel.style.transition = 'transform 0.5s ease-in-out';
-            updateCarousel();
-        }
-        
-        function startCarousel() {
-            slideInterval = setInterval(nextSlide, 5000);
-        }
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+            
+            function startCarousel() {
+                stopCarousel(); 
+                slideInterval = setInterval(nextSlide, 5000);
+            }
 
-        function stopCarousel() {
-            clearInterval(slideInterval);
-        }
+            function stopCarousel() {
+                clearInterval(slideInterval);
+            }
 
-        document.querySelector('.next-arrow').addEventListener('click', () => {
-            stopCarousel();
-            nextSlide();
+            document.querySelector('.next-arrow').addEventListener('click', () => {
+                stopCarousel();
+                nextSlide();
+                startCarousel();
+            });
+
+            document.querySelector('.prev-arrow').addEventListener('click', () => {
+                stopCarousel();
+                prevSlide();
+                startCarousel();
+            });
+            
+            createSlides();
+            startCarousel();
+            
+            const galleryContainer = document.querySelector('.gallery-container');
+            galleryContainer.addEventListener('mouseenter', stopCarousel);
+            galleryContainer.addEventListener('mouseleave', startCarousel);
         });
-
-        document.querySelector('.prev-arrow').addEventListener('click', () => {
-            stopCarousel();
-            prevSlide();
-        });
-        
-        createSlides();
-        startCarousel();
-        
-        carousel.addEventListener('mouseenter', stopCarousel);
-        carousel.addEventListener('mouseleave', startCarousel);
 
 
         // 8. Fetch and Display Menu from Google Sheet
